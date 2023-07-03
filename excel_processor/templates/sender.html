@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga o bagulho `-´</title>
+</head>
+<body>
+    <h1>Manga o Bagulho</h1>
+    <form  method="post" action="http://127.0.0.1:8000/sl/envia/">
+        {% csrf_token %}
+
+        <input type="file" id="fname" name="fname">
+
+        <button type="submit">
+            Enviar o ngs ai
+        </button>
+    </form>
+</body>
+</html>
