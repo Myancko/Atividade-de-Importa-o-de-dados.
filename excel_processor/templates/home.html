@@ -1,0 +1,99 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <title>Pagination</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.5/datatables.min.css" rel="stylesheet"/>
+
+</head>
+  <body class="body">
+    <table class="table table-striped table-hover table-dark" id="tabela">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Codigo</th>
+                <th>Identificacao do kit</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for kit in page.object_list %}
+                <tr>
+                    <th scope="row"> {{ kit.id }}</th>
+                    <td>{{ kit.codigo }}</td>
+                    <td>{{ kit.identificacao_kit }}</td>
+                    <td>{{ kit.preco }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      
+    <!-- <div class="pag center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page.has_previous %}
+                <li class="page-item" >
+                    <a class="page-link" href="{% url 'listagem' %}?page={{ page.previous_page_number }}" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"  >
+                    <a class="page-link"  aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            
+                
+            {% for num in page.paginator.page_range %}
+                {% if page.number == num  %}
+                    <li class="page-item active" >
+                        <a class="page-link" href="">{{num}}</a>
+                    </li>
+
+                {% elif num > page.number|add:'-5' and num < page.number|add:'5' %}
+                    <li class="page-item" >
+                        <a class="page-link" href="{% url 'listagem' %}?page={{ num }}">{{num}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'listagem' %}?page={{ page.next_page_number }}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        
+    </div> -->
+
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.5/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function(){
+            $("#tabela").DataTable({
+                "dom": 'ftipr',
+                "pageLength": 50,
+                
+            });
+        });
+
+    </script>
+</body>
+</html>

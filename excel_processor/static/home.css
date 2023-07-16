@@ -1,0 +1,17 @@
+.body
+{
+    margin: 5%;
+
+}
+.pagination
+{
+    display: flex !important; 
+    justify-content: center !important; 
+}
+.dataTables_filter
+{
+    display: flex !important; 
+    flex: 1 !important;
+    justify-content: center !important; 
+    
+}
